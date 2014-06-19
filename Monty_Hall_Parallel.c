@@ -8,36 +8,35 @@
 int main(){
 
 	const int NUMSTEPS = 10000;
+	srand(time(NULL));	
 
- 	double goatAverage, carAverage;
-	int car = 0;
-	int goat = 0;
-	int userChoice, probOfCar;
+ 	double winAverage;
+	int wins = 0, userChoice, isACar, door1, door2;
+	bool isGoat = true, isCar = true, switchIt = true, noSwitchIt = true, gotItRight;
 	for(int i = 0;i < NUMSTEPS; i++){
 
-		//bool thereIsACar;
-		
-		srand(time(NULL));	
-	
 		userChoice = rand() % 3;
-		
-		srand(time(NULL));
-		probOfCar = rand() % 3;
-		
-		if(probOfCar == userChoice){
-			car++;
-		} //else if(probOfCar != userChoice){
-		printf("hey");	
-		//printf("hey");	
-		//	goat++;
-		//}
-	}	
-	goatAverage = goat / NUMSTEPS;
-	carAverage = car / NUMSTEPS;
+		isACar = rand() % 3;
 
-	printf("Goat Average = %f\n", goatAverage);
-	printf("Car Average = %f\n", carAverage);
+		if(isACar == userChoice){
+			door1 = isGoat;
+			door2 = isGoat;
+		} else if(isACar != userChoice){	
+			door1 = isGoat;
+			door2 = isCar; 
+		}
+		
+		gotItRight = rand() % 2;
+		if( ((isACar == userChoice) && noSwitchIt) || ((isACar != userChoice) && (gotItRight == true))) {
+			wins++;
+		}
 	
+	}	
+	winAverage = (double)wins / NUMSTEPS;
+
+	printf("There were %d wins out of %d games.\n", wins, NUMSTEPS);
+	printf("That's a win average of %f.\nLooks like Monty Hall is at it again with this devilish tomfoolery!!\n", winAverage);
+
 
 	return 0;
 }
