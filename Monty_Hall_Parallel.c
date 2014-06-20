@@ -12,7 +12,7 @@ int main(){
 
  	double winAverage;
 	int wins = 0, userChoice, isACar, door1, door2;
-	bool isGoat = true, isCar = true, switchIt = true, noSwitchIt = true, gotItRight;
+	bool isGoat = true, isCar = true, noSwitchIt = true, switchedAndChoiceIsRight;
 	for(int i = 0;i < NUMSTEPS; i++){
 
 		userChoice = rand() % 3;
@@ -26,8 +26,8 @@ int main(){
 			door2 = isCar; 
 		}
 		
-		gotItRight = rand() % 2;
-		if( ((isACar == userChoice) && noSwitchIt) || ((isACar != userChoice) && (gotItRight == true))) {
+		switchedAndChoiceIsRight = rand() % 2;
+		if( ((isACar == userChoice) && (noSwitchIt == true)) || ((isACar != userChoice) && (switchedAndChoiceIsRight == true))) {
 			wins++;
 		}
 	
